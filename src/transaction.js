@@ -10,6 +10,7 @@ var typeforce = require('typeforce')
 var types = require('./types')
 var varuint = require('varuint-bitcoin')
 var blake2b = require('blake2b')
+var debug = require('debug')('bitgo:utxolib:transaction')
 
 function varSliceSize (someScript) {
   var length = someScript.length
@@ -249,9 +250,9 @@ Transaction.fromBuffer = function (buffer, network = networks.default, __noStric
   var tx = new Transaction(network)
   tx.version = readInt32()
 
-  console.log('NETWORK')
-  console.log(network)
-  //console.log('version: ' +  tx.version + ', offset:' + offset)
+  debug('NETWORK')
+  debug(network)
+  debug('version: ' +  tx.version + ', offset:' + offset)
 
   if (coins.isZcash(network)) {
     // Split the header into fOverwintered and nVersion
@@ -795,10 +796,10 @@ Transaction.prototype.getOutputsHash = function (hashType, inIndex) {
  * @returns double SHA-256 or 256-bit BLAKE2b hash
  */
 Transaction.prototype.hashForZcashSignature = function (inIndex, prevOutScript, value, hashType) {
-  console.log('Hash for zcash signature initialized')
+  debug('Hash for zcash signature initialized')
   
   typeforce(types.tuple(types.UInt32, types.Buffer, types.Satoshi, types.UInt32), arguments)
-  console.log('Typeforce completed')
+  debug('Typeforce completed')
   if (!coins.isZcash(this.network)) {
     throw new Error('hashForZcashSignature can only be called when using Zcash or Verus network')
   }
@@ -809,7 +810,7 @@ Transaction.prototype.hashForZcashSignature = function (inIndex, prevOutScript, 
     throw new Error('Input index is out of range')
   }
 
-  console.log('checking overwinter compatibility')
+  debug('checking overwinter compatibility')
   if (this.isOverwinterCompatible()) {
     var hashPrevouts = this.getPrevoutHash(hashType)
     var hashSequence = this.getSequenceHash(hashType)
@@ -817,7 +818,7 @@ Transaction.prototype.hashForZcashSignature = function (inIndex, prevOutScript, 
     var hashJoinSplits = ZERO
     var hashShieldedSpends = ZERO
     var hashShieldedOutputs = ZERO
-    console.log('hashes evaluated')
+    debug('hashes evaluated')
 
     var bufferWriter
     var baseBufferSize = 0
@@ -875,7 +876,7 @@ Transaction.prototype.hashForZcashSignature = function (inIndex, prevOutScript, 
   }
   else
   {
-    console.log('not overwinter compatible')
+    debug('not overwinter compatible')
     return this.hashForSignature(inIndex, prevOutScript, hashType);
   }
 }

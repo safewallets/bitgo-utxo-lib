@@ -11,6 +11,7 @@ var BigInteger = require('bigi')
 
 var ecurve = require('ecurve')
 var secp256k1 = ecdsa.__curve
+var debug = require('debug')('bitgo:utxolib:ecpair')
 
 function ECPair (d, Q, options) {
   if (options) {
@@ -72,9 +73,9 @@ ECPair.fromWIF = function (string, network) {
   // otherwise, assume a network object (or default to vrsc style network)
   } else {
     network = network || NETWORKS.default
-    console.log('Network WIF: ' + network.wif + ', Version: ' + version)
+    debug('Network WIF: ' + network.wif + ', Version: ' + version)
     //if (version !== network.wif) throw new Error('Invalid network version')
-    if (version !== network.wif) console.log('Warning: current network version does not match wif key version')
+    if (version !== network.wif) deug('Warning: current network version does not match wif key version')
   }
 
   var d = BigInteger.fromBuffer(decoded.privateKey)
