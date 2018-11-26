@@ -75,7 +75,7 @@ ECPair.fromWIF = function (string, network) {
     network = network || NETWORKS.default
     debug('Network WIF: ' + network.wif + ', Version: ' + version)
     //if (version !== network.wif) throw new Error('Invalid network version')
-    if (version !== network.wif) deug('Warning: current network version does not match wif key version')
+    if (version !== network.wif) debug('Warning: current network version does not match wif key version')
   }
 
   var d = BigInteger.fromBuffer(decoded.privateKey)
