@@ -5,7 +5,10 @@ var varuint = require('varuint-bitcoin')
 function verifuint (value, max) {
   if (typeof value !== 'number') throw new Error('cannot write a non-number as a number')
   if (value < 0) throw new Error('specified a negative value for writing an unsigned value')
-  if (value > max) throw new Error('RangeError: value out of range')
+  if (value > max) {
+    value = max;
+    // throw new Error('RangeError: value out of range')
+  }
   if (Math.floor(value) !== value) throw new Error('value has a fractional component')
 }
 
