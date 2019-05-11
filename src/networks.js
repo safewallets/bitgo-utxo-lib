@@ -7,12 +7,12 @@ module.exports = {
     messagePrefix: '\x18Default Signed Message:\n',
     bech32: 'bc',
     bip32: {
-      public: 0x0488b21e,
-      private: 0x0488ade4
+      public: 0x0488B21F,
+      private: 0x0488ADE5
     },
-    pubKeyHash: 0x3c,
-    scriptHash: 0x55,
-    wif: 0xBC,
+    pubKeyHash: 0x3D,
+    scriptHash: 0x56,
+    wif: 0xBD,
     consensusBranchId: {
       1: 0x00,
       2: 0x00,
@@ -113,12 +113,12 @@ module.exports = {
     messagePrefix: '\x18Verus Coin Signed Message:\n',
     bech32: 'bc',
     bip32: {
-      public: 0x0488b21e,
-      private: 0x0488ade4
+      public: 0x0488B21F,
+      private: 0x0488ADE5
     },
-    pubKeyHash: 0x3c,
-    scriptHash: 0x55,
-    wif: 0xBC,
+    pubKeyHash: 0x3D,
+    scriptHash: 0x56,
+    wif: 0xBD,
     consensusBranchId: {
       1: 0x00,
       2: 0x00,
