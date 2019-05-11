@@ -113,6 +113,25 @@ module.exports = {
     messagePrefix: '\x18Verus Coin Signed Message:\n',
     bech32: 'bc',
     bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4
+    },
+    pubKeyHash: 0x3c,
+    scriptHash: 0x55,
+    wif: 0xBC,
+    consensusBranchId: {
+      1: 0x00,
+      2: 0x00,
+      3: 0x5ba81b19,
+      4: 0x76b809bb
+    },
+    coin: coins.VRSC,
+    isZcash: true
+  },
+  safe: {
+    messagePrefix: '\x18Safecoin Signed Message:\n',
+    bech32: 'bc',
+    bip32: {
       public: 0x0488B21F,
       private: 0x0488ADE5
     },
@@ -125,7 +144,7 @@ module.exports = {
       3: 0x5ba81b19,
       4: 0x76b809bb
     },
-    coin: coins.VRSC,
+    coin: coins.SAFE,
     isZcash: true
   },
   btg: {

@@ -895,6 +895,10 @@ Transaction.prototype.hashForVerusSignature = function (inIndex, prevOutScript, 
   return this.hashForZcashSignature(inIndex, prevOutScript, value, hashType);
 }
 
+Transaction.prototype.hashForSafecoinSignature = function (inIndex, prevOutScript, value, hashType) {
+  return this.hashForZcashSignature(inIndex, prevOutScript, value, hashType);
+}
+
 Transaction.prototype.hashForWitnessV0 = function (inIndex, prevOutScript, value, hashType) {
   typeforce(types.tuple(types.UInt32, types.Buffer, types.Satoshi, types.UInt32), arguments)
 
